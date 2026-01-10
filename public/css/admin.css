@@ -1,0 +1,100 @@
+
+body {
+    background: #192979 !important;
+    color: white !important;
+}
+
+
+
+
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f6f8;
+}
+
+.admin-container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.page-title {
+    margin-bottom: 15px;
+    color: #222;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+}
+
+.ad-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.ad-form input,
+.ad-form button {
+    padding: 10px;
+    font-size: 14px;
+}
+
+.ad-form button {
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.ad-form button:hover {
+    background: #0056b3;
+}
+
+.ad-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.ad-item {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 6px;
+    text-align: center;
+    background: #fafafa;
+}
+
+.ad-item img {
+    width: 100%;
+    max-height: 120px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.ad-item a {
+    display: block;
+    margin: 8px 0;
+    font-size: 13px;
+    color: #007bff;
+    word-break: break-all;
+}
+
+.delete-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.delete-btn:hover {
+    background: #b02a37;
+}

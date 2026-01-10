@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | King Wero Wero</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="login-container">
+        <h1>Admin Login</h1>
+        <form id="loginForm">
+            <input type="text" placeholder="Username" id="username" required>
+            <input type="password" placeholder="Password" id="password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p id="errorMsg" style="color:red;"></p>
+    </div>
+
+    <!-- Updated login script -->
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e){
+            e.preventDefault();
+
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            // Temporary credentials
+            if(username === "admin" && password === "123456"){
+                // Redirect to dashboard.html after successful login
+                window.location.href = "dashboard.html";
+            } else {
+                document.getElementById('errorMsg').textContent = "Invalid username or password";
+            }
+        });
+    </script>
+</body>
+</html>

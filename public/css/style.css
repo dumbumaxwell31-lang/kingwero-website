@@ -1,0 +1,323 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #fff;
+    background: url('../assets/background.jpg') center/cover no-repeat;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: -1;
+}
+
+/* ================= HEADER ================= */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: rgba(0,0,0,0.7);
+}
+
+.logo {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.logo img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.nav a {
+    color: #fff;
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+.nav a:hover {
+    color: #ffd700;
+}
+
+/* ================= HERO ================= */
+.hero {
+    min-height: 60vh;
+    display: flex;
+    justify-content: center;
+    padding-top: 65px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 2.7rem;
+    margin-bottom: 15px;
+}
+
+.hero-content span {
+    color: #ffd700;
+}
+
+.hero-content p {
+    margin-bottom: 22px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* ================= BUTTONS ================= */
+.btn {
+    padding: 12px 22px;
+    border-radius: 6px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.2s;
+    white-space: nowrap;
+    min-width: 220px;
+    text-align: center;
+}
+
+.btn:hover {
+    opacity: 0.85;
+}
+
+.btn.premier { background: red; }
+.btn.aviator { background: #1e90ff; }
+
+.btn.small {
+    padding: 10px 18px;
+    margin-top: 16px;
+    min-width: 220px;
+}
+
+/* ================= WHAT I DO ================= */
+.icons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    padding: 20px 15px;
+    margin-top: -25px;
+    background: rgba(0,0,0,0.6);
+    flex-wrap: wrap;
+}
+
+/* ================= ADS ================= */
+.advert {
+    padding: 20px 15px 35px;
+    margin-top: -20px;
+    background: rgba(0,0,0,0.75);
+    text-align: center;
+}
+
+.ads-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.ads-container > div {
+    background: rgba(0,0,0,0.65);
+    padding: 20px;
+    border-radius: 12px;
+    width: 320px;
+}
+
+.ads-container img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* ================= CARDS ================= */
+.cards {
+    display: flex;
+    gap: 25px;
+    padding: 40px 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 300px;
+    background: rgba(0,0,0,0.65);
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.card p {
+    margin-bottom: 22px;
+    line-height: 1.5;
+}
+
+/* ================= FOOTER ================= */
+footer {
+    background: rgba(0,0,0,0.85);
+    padding: 25px 20px;
+    text-align: center;
+}
+
+/* ================= CONTACT ICONS (SVG FIX) ================= */
+.footer-icons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 15px;
+}
+
+.footer-icons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* FORCE SVG VISIBILITY & COLOR */
+.footer-icons img {
+    width: 36px;
+    height: 36px;
+
+    /* Makes dark SVGs visible on dark background */
+    filter: invert(85%) sepia(60%) saturate(500%) hue-rotate(5deg);
+
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    opacity: 0.9;
+}
+
+.footer-icons a:hover img {
+    transform: scale(1.2);
+    opacity: 1;
+}
+
+/* ================= LEGAL LINKS ================= */
+footer p {
+    font-size: 0.9rem;
+}
+
+footer p a {
+    color: #ffd700;
+    text-decoration: none;
+}
+
+footer p a:hover {
+    text-decoration: underline;
+}
+
+/* ================= LEGAL PAGES ================= */
+.legal {
+    max-width: 900px;
+    margin: 120px auto;
+    padding: 30px;
+    background: rgba(0,0,0,0.7);
+    border-radius: 12px;
+}
+
+.legal h1 {
+    margin-bottom: 20px;
+    color: #ffd700;
+}
+
+.legal p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .btn {
+        min-width: 100%;
+    }
+
+    .ads-container > div {
+        width: 90%;
+    }
+
+    .footer-icons img {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+
+
+
+/* ================= COOKIE NOTICE ================= */
+#cookie-notice {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 95%;
+    width: 600px;
+    background: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    padding: 18px 20px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 9999;
+    display: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+#cookie-notice p {
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+#cookie-notice a {
+    color: #ffd700;
+    text-decoration: none;
+}
+
+#cookie-notice a:hover {
+    text-decoration: underline;
+}
+
+#cookie-notice button {
+    background: #1e90ff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+#cookie-notice button:hover {
+    opacity: 0.85;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+    #cookie-notice {
+        bottom: 10px;
+        padding: 15px;
+    }
+}

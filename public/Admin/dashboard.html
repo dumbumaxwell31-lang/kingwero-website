@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+
+    <!-- ADMIN STYLES ONLY -->
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+
+<div class="admin-container">
+
+    <h2 class="page-title">Upload Advert</h2>
+
+    <form id="adForm" class="ad-form" enctype="multipart/form-data">
+        <input type="text" id="adTitle" placeholder="Advert Title" required>
+        <input type="url" id="adLink" placeholder="Advert Link" required>
+        <input type="file" id="adImage" accept="image/*" required>
+        <button type="submit">Upload Advert</button>
+    </form>
+
+    <h2 class="page-title">Existing Adverts</h2>
+    <div class="ad-list"></div>
+
+</div>
+
+<script>
+const adForm = document.getElementById('adForm');
+const adList = document.querySelector('.ad-list');
+
+adForm.addEventListener('submit', async e => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append('title', adTitle.value);
+    formData.append('link', adLink.value);
+    formData.append('image', adImage.files[0]);
+
+    await fetch('/upload-ad', { method: 'POST', body: formData });
+    adForm.reset();
+    loadAds();
+});
+
+async function deleteAd(id) {
+    if (!confirm('Delete this advert?')) return;
+    await fetch(`/delete-ad/${id}`, { method: 'DELETE' });
+    loadAds();
+}
+
+async function loadAds() {
+    const res = await fetch('/api/ads');
+    const ads = await res.json();
+
+    adList.innerHTML = '';
+    ads.forEach(ad => {
+        adList.innerHTML += `
+            <div class="ad-item">
+                <h3>${ad.title}</h3>
+                <img src="${ad.image}">
+                <a href="${ad.link}" target="_blank">${ad.link}</a>
+                <button class="delete-btn" onclick="deleteAd(${ad.id})">
+                    Delete
+                </button>
+            </div>
+        `;
+    });
+}
+
+loadAds();
+</script>
+
+</body>
+</html>
