@@ -5,7 +5,9 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const PORT = 3000;
+
+// ✅ IMPORTANT: Render provides PORT automatically
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.json());
@@ -21,7 +23,9 @@ if (!fs.existsSync(uploadDir)) {
 
 // Multer config
 const storage = multer.diskStorage({
-    destination: uploadDir,
+    destination: (req, file, cb) => {
+        cb(null, uploadDir);
+    },
     filename: (req, file, cb) => {
         cb(null, Date.now() + path.extname(file.originalname));
     }
@@ -32,14 +36,17 @@ const upload = multer({ storage });
 // Upload advert
 app.post('/upload-ad', upload.single('image'), (req, res) => {
     const { title, link } = req.body;
-    if (!req.file) return res.status(400).json({ success: false });
+    if (!req.file) {
+        return res.status(400).json({ success: false, message: 'No file uploaded' });
+    }
 
     const adsFile = path.join(__dirname, 'ads.json');
     const image = `/uploads/${req.file.filename}`;
 
-    let ads = fs.existsSync(adsFile)
-        ? JSON.parse(fs.readFileSync(adsFile))
-        : [];
+    let ads = [];
+    if (fs.existsSync(adsFile)) {
+        ads = JSON.parse(fs.readFileSync(adsFile, 'utf-8'));
+    }
 
     ads.push({
         id: Date.now(),
@@ -56,7 +63,7 @@ app.post('/upload-ad', upload.single('image'), (req, res) => {
 app.get('/api/ads', (req, res) => {
     const adsFile = path.join(__dirname, 'ads.json');
     const ads = fs.existsSync(adsFile)
-        ? JSON.parse(fs.readFileSync(adsFile))
+        ? JSON.parse(fs.readFileSync(adsFile, 'utf-8'))
         : [];
 
     res.json(ads);
@@ -69,7 +76,7 @@ app.delete('/delete-ad/:id', (req, res) => {
         return res.json({ success: false });
     }
 
-    let ads = JSON.parse(fs.readFileSync(adsFile));
+    let ads = JSON.parse(fs.readFileSync(adsFile, 'utf-8'));
     const ad = ads.find(a => a.id == req.params.id);
 
     if (ad && ad.image) {
@@ -86,6 +93,6 @@ app.delete('/delete-ad/:id', (req, res) => {
 });
 
 // Start server
-app.listen(PORT, () => {
-    console.log(`✅ Server running at http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`✅ Server running on port ${PORT}`);
 });
