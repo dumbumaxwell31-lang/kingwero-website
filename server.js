@@ -15,6 +15,23 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+/* ===============================
+   ✅ ADD THIS BLOCK (SITEMAP FIX)
+   =============================== */
+app.get('/sitemap.xml', (req, res) => {
+    const sitemapPath = path.join(__dirname, 'sitemap.xml');
+
+    if (fs.existsSync(sitemapPath)) {
+        res.setHeader('Content-Type', 'application/xml');
+        res.sendFile(sitemapPath);
+    } else {
+        res.status(404).send('Sitemap not found');
+    }
+});
+/* ===============================
+   END SITEMAP FIX
+   =============================== */
+
 // Ensure uploads folder exists
 const uploadDir = path.join(__dirname, 'uploads');
 if (!fs.existsSync(uploadDir)) {
